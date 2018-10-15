@@ -13,8 +13,7 @@ namespace MenuShell.View
             Console.WriteLine("You are only allowed to see the users firstname, lastname and role");
             Console.WriteLine("The list are no loading...");
             Thread.Sleep(1000);
-            Console.ReadLine();
-
+            
             return "";
         }
     }
