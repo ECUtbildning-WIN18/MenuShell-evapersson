@@ -1,21 +1,52 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using MenuShell.Entities;
 
 namespace MenuShell.View
 {
-    class AdminMainMenu : ConsoleView
+    class AdminMainMenu
     {
-
-        public override string Display()
+        public void Display(List<User> users)
         {
-            base.Display();
+            var manageUser = new ManageUserView();
+            int result = 0;
 
-            Console.WriteLine("¤¤¤¤ ADMIN FUNCTIONS ¤¤¤¤ \n");
-            Console.WriteLine("(1) Manage users");
-            Console.WriteLine("(2) Log out");
-            Console.WriteLine("(3) Exit");
-            string result = Console.ReadLine();
+            while (true)
+            {
+                Console.Clear();
 
-            return result; 
+                Console.WriteLine("¤¤¤¤ ADMIN FUNCTIONS ¤¤¤¤ \n");
+                Console.WriteLine("(1) Manage users");
+                Console.WriteLine("(2) Exit");
+              
+
+                try
+                {
+                    result = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    result = 0;
+                }
+
+                switch (result)
+                {
+                    case 1:
+                        manageUser.Display(users);
+                        break;
+
+                    case 2:
+                        Environment.Exit(0);
+                        break;
+
+                    default:
+                        Console.WriteLine("Wrong input");
+                        Thread.Sleep(1000);
+                        break;
+                }
+
+            }
         }
     }
 }

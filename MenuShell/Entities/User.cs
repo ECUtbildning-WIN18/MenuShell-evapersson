@@ -2,11 +2,11 @@
 {
     class User
     {
-        public string FirstName { get;}
+        public string FirstName { get; }
         public string LastName { get; }
         public string UserName { get; }
-        public string Password { get;}
-        public string Role { get;}
+        public string Password { get; }
+        public string Role { get; }
 
 
         public User(string firstName, string lastName, string userName, string password, string role)
@@ -16,6 +16,12 @@
             UserName = userName;
             Password = password;
             Role = role;
+        }
+
+        public override string ToString()
+        {
+            return UserName;
+            
         }
     }
 }

@@ -16,6 +16,7 @@ namespace MenuShell.Services
                     _user = user;
                     break;
                 }
+             
             }
             return _user;
         }

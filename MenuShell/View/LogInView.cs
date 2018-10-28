@@ -1,34 +1,52 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using MenuShell.Entities;
+using MenuShell.Services;
 
 namespace MenuShell.View
 {
-    class LogInView : ConsoleView
+    class LogInView
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
 
-        public override string Display()
+        public void Display(List<User> users) 
         {
+            User loggedInUser = null;
+            var authentication = new AuthenticationService();
             string keyInfo ="";
 
             do
             {
-                base.Display();
+                Console.Clear();
                 Console.WriteLine("¤¤¤¤ Welcome to Application Xtremely perfect ¤¤¤¤ \n");
                 Console.WriteLine("Please log in\n");
 
                 Console.Write("Username: ");
-                Username = Console.ReadLine();
+                string username = Console.ReadLine();
 
                 Console.Write("Password: ");
-                Password = Console.ReadLine();
+                string password = Console.ReadLine();
 
                 Console.Write("\nIs this correct? (Y)es (N)o: ");
-                keyInfo = Console.ReadLine();
+                keyInfo = Console.ReadLine();        
 
-            } while (keyInfo.ToUpper() != "Y");
+                if (keyInfo.ToUpper() == "Y")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Checking your credientals...");
+                    Thread.Sleep(1500);
+                 
+                        loggedInUser = authentication.Authenticate(username, password, users);
 
-            return keyInfo;
+                    if (loggedInUser == null)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Login failed, you will be redirected to login-page");
+                        Thread.Sleep(1000);
+                    }
+                }
+            } while (keyInfo.ToUpper() != "Y" || loggedInUser == null);
+            
         }
     }
 }
