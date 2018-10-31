@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
-using MenuShell.Entities;
 
 namespace MenuShell.View
 {
     class AdminMainMenu
     {
-        public void Display(List<User> users)
+        public void Display()
         {
             var manageUser = new ManageUserView();
             int result = 0;
@@ -33,7 +31,7 @@ namespace MenuShell.View
                 switch (result)
                 {
                     case 1:
-                        manageUser.Display(users);
+                        manageUser.Display();
                         break;
 
                     case 2:
@@ -45,7 +43,6 @@ namespace MenuShell.View
                         Thread.Sleep(1000);
                         break;
                 }
-
             }
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using MenuShell.Entities;
 using MenuShell.Services;
 
@@ -7,10 +6,12 @@ namespace MenuShell.View
 {
     class AddUserView
     {
-        public void Display(UserHandler userHandler, List<User> users)
+        public void Display()
         {
 
             string result;
+            var sqlHandler = new SQLHandler();
+           
 
             do
             { 
@@ -37,8 +38,10 @@ namespace MenuShell.View
                 result = Console.ReadLine();
 
                 if (result.ToUpper() == "Y")
-                {                 
-                    userHandler.AddUser(firstName, lastName, userName, password, role, users);
+                {
+                    User user = new User(firstName, lastName, userName, password, role);
+                    sqlHandler.AddUserSQL(user);
+
                 }
             } while (result.ToUpper() != "Y");
 

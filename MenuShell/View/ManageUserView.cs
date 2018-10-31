@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
-using MenuShell.Entities;
-using MenuShell.Services;
 
 namespace MenuShell.View
 {
     class ManageUserView
     {
-
-        public void Display(List<User> users)
+        public void Display()
         {
             var addUser = new AddUserView();
             var searchUser = new SearchUserView();
-            var userHandler = new UserHandler();
-
+      
             bool correctSelection = false;
             int choice = 0;
 
@@ -34,16 +29,15 @@ namespace MenuShell.View
                     choice = 0;
                 }
 
-
                 switch (choice)
                 {
                     case 1:
-                        addUser.Display(userHandler, users);
+                        addUser.Display();
                         correctSelection = true;
                         break;
 
                     case 2:
-                        searchUser.Display(userHandler, users);
+                        searchUser.Display();
                         correctSelection = true;
                         break;
 
@@ -56,6 +50,5 @@ namespace MenuShell.View
             }
             while (correctSelection == false);
         }
- 
     }
 }

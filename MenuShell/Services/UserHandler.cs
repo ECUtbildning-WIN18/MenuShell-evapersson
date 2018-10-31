@@ -6,7 +6,7 @@ using MenuShell.View;
 using MenuShell.Entities;
 using System.Threading;
 
-namespace MenuShell.Services
+namespace MenuShell.Services //de flesta av de här metoderna används inte längre
 {
     class UserHandler
     {
@@ -40,23 +40,5 @@ namespace MenuShell.Services
         }
 
 
-        //public void Display(List<User> users)  //A FUNCTION MADE ONLY FOR SECRETARY VIEW
-        //{
-
-        //    Console.Clear();
-
-        //    Console.WriteLine(" ¤¤¤¤ LIST USERS ¤¤¤¤ \n");
-        //    Console.WriteLine("The following user/users was found in the system!");
-
-        //    foreach (var user in users)
-        //    {
-        //        Console.WriteLine($" Name:{user.UserName}"/*{user.LastName} Role:{user.Role}*/);
-        //    }
-
-        //Console.ReadLine();
-        //Console.WriteLine("Press any key to go back to main menu");
-        //Console.ReadLine();
-
-        //}
     }
 }

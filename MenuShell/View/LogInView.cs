@@ -8,11 +8,13 @@ namespace MenuShell.View
 {
     class LogInView
     {
-
-        public void Display(List<User> users) 
+        public void Display() 
         {
             User loggedInUser = null;
             var authentication = new AuthenticationService();
+            List<User> users = new List<User>();
+            var userLoader = new SQLHandler();
+            
             string keyInfo ="";
 
             do
@@ -35,8 +37,8 @@ namespace MenuShell.View
                     Console.Clear();
                     Console.WriteLine("Checking your credientals...");
                     Thread.Sleep(1500);
-                 
-                        loggedInUser = authentication.Authenticate(username, password, users);
+                    users = userLoader.LoadUsers();
+                    loggedInUser = authentication.Authenticate(username, password, users);
 
                     if (loggedInUser == null)
                     {
@@ -45,8 +47,7 @@ namespace MenuShell.View
                         Thread.Sleep(1000);
                     }
                 }
-            } while (keyInfo.ToUpper() != "Y" || loggedInUser == null);
-            
+            } while (keyInfo.ToUpper() != "Y" || loggedInUser == null);    
         }
     }
 }

@@ -1,34 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
-using MenuShell.Entities;
 using MenuShell.Services;
 
 namespace MenuShell.View
 {
     class DeleteUserView
     {
-
-        public void Display(string userName, List<User> users)
+        public void Display(string userName)
         {
-            var userHandler = new UserHandler();
-            bool foundInList = false;
+            //var userHandler = new UserHandler();
+            var sqlHandler = new SQLHandler();
+            int result = 0;
 
                 Console.Clear();
                 Console.WriteLine("¤¤¤¤ DELETE USER ¤¤¤¤");
                 Console.WriteLine("\n");
 
-            foreach (var user in users)
-            {
-                if (user.UserName == userName)
-                {
-                    userHandler.RemoveUser(user, users);
-                    foundInList = true;
-                    break;
-                }
-            }
+            result = sqlHandler.DeleteUserSQL(userName);
+         
 
-            if (foundInList == true)
+            if (result > 0)
             {
                 Console.WriteLine("This user will now be deleted!");
                 Thread.Sleep(1000);

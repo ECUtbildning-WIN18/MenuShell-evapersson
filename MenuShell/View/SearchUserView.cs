@@ -8,19 +8,20 @@ namespace MenuShell.View
 {
     class SearchUserView
     {
-
-        public void Display(UserHandler userHandler, List<User> users)
+        public void Display()
         {
             var deleteUser = new DeleteUserView();
+            var userHandler = new UserHandler();
+            var sqlHandler = new SQLHandler();
             List<User> _users;
             string delete = "";
             Console.Clear();
 
             Console.WriteLine("¤¤¤¤ SEARCH USER ¤¤¤¤");
-            Console.WriteLine("\n Type at least the first letter in the username: ");
+            Console.WriteLine("\n Type at least one letter in the username: ");
             string searchWord = Console.ReadLine();
 
-            _users = userHandler.FindUsers(searchWord, users);
+            _users = sqlHandler.SearchUserSQL(searchWord);
 
             if (_users.Count > 0)
             {
@@ -36,7 +37,7 @@ namespace MenuShell.View
                 {
                     Console.WriteLine("\n\nWhich one of the users do you want to delete? Be careful and type exactly the right username");
                     string deleteChoice = Console.ReadLine();
-                    deleteUser.Display(deleteChoice, users);
+                    deleteUser.Display(deleteChoice);
                 }
             }
 
